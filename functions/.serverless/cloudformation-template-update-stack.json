@@ -78,7 +78,7 @@
             [
               "mlb-status-aws",
               "dev",
-              "eu-east-1",
+              "us-east-1",
               "lambdaRole"
             ]
           ]
@@ -320,7 +320,7 @@
             {
               "Ref": "ApiGatewayRestApi"
             },
-            ".execute-api.eu-east-1.",
+            ".execute-api.us-east-1.",
             {
               "Ref": "AWS::URLSuffix"
             },
