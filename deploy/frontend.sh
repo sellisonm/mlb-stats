@@ -1,5 +1,3 @@
-# navigate into our frontend directory
-cd src/
 
 # build our frontend project
 npm install
