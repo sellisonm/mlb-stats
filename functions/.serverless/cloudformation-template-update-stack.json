@@ -78,7 +78,7 @@
             [
               "mlb-status-aws",
               "dev",
-              "us-east-1",
+              "eu-east-1",
               "lambdaRole"
             ]
           ]
@@ -92,7 +92,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/mlb-status-aws/dev/1538237152103-2018-09-29T16:05:52.103Z/mlb-status-aws.zip"
+          "S3Key": "serverless/mlb-status-aws/dev/1538246803421-2018-09-29T18:46:43.421Z/mlb-status-aws.zip"
         },
         "FunctionName": "mlb-status-aws-dev-list",
         "Handler": "listPosts.index",
@@ -237,7 +237,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1538237152115": {
+    "ApiGatewayDeployment1538246803430": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -320,7 +320,7 @@
             {
               "Ref": "ApiGatewayRestApi"
             },
-            ".execute-api.us-east-1.",
+            ".execute-api.eu-east-1.",
             {
               "Ref": "AWS::URLSuffix"
             },
