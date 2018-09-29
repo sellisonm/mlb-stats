@@ -4,7 +4,7 @@ node_js:
 - node
 
 before_install:
-  - chmod +x frontend.sh
+  - chmod +x ./deploy/frontend.sh
 
 jobs:
   include:
