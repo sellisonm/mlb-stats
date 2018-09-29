@@ -1,0 +1,11 @@
+language: node_js
+
+node_js:
+- node
+
+jobs:
+  include:
+    - stage: deploy_frontend
+      script: ./deploy/frontend.sh
+    - stage: deploy_functions
+      script: ./deploy/functions.sh

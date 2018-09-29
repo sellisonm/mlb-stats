@@ -1,0 +1,17 @@
+service: mlb-status-aws
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+
+provider:
+  name: aws
+  region: eu-east-1
+
+functions:
+  list:
+    runtime: nodejs8.10
+    handler: listPosts.index
+    events:
+      - http:
+          path: posts
+          method: get
+          cors: true
