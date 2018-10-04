@@ -1,5 +1,11 @@
-import axios from 'axios'
+import axios from 'axios';
+ 
+export default {
 
-function getPlayerData(id) {
-    axios.get('https://api.mysportsfeeds.com/v1.1/pull/mlb/2018-2019-regular/cumulative_player_stats.json?player="freddie-freeman")
+    getPlayerData() {        
+        return axios.get('https://data.lacity.org/api/views/nxs9-385f/rows.json')
+        .then(function(response) {
+            return response;
+        })
+    }
 }

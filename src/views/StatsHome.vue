@@ -22,11 +22,12 @@
 </template>
 
 <script>
-import draggable from 'vuedraggable' 
+
+import PlayerServices from '@/services/players'
+
 
 export default {
-    components: {
-            draggable    
+    components: { 
         },
     data() {
         return {
@@ -47,8 +48,18 @@ export default {
                     ],
                     url: 'player/660670'
                 }
-            ]
+            ],
+            otherdata: []
         }
+    },
+    created() {
+        PlayerServices.getPlayerData()
+        .then(
+            data => {
+                this.otherdata = data
+                console.log(this.otherdata)
+            }
+        )
     }
 }
 </script>
