@@ -31,35 +31,42 @@ export default {
         },
     data() {
         return {
-            players: [
-                {
-                    playerName: 'Freddie Freeman',
-                    imagesrc: 'http://mlb.mlb.com/mlb/images/players/head_shot/518692.jpg',
-                    playerCardData: [
-                        { batting_average: '.312', home_runs: 22, rbis: 99}
-                    ],
-                    url: 'player/518692'
-                },
-                {
-                    playerName: 'Ronald Acuna Jr.',
-                    imagesrc: 'http://mlb.mlb.com/mlb/images/players/head_shot/660670.jpg',
-                    playerCardData: [
-                        { batting_average: '.288', home_runs: 29, rbis: 79}
-                    ],
-                    url: 'player/660670'
-                }
-            ],
+            players: [],
             otherdata: []
         }
     },
     created() {
         PlayerServices.getPlayerData()
         .then(
-            data => {
-                this.otherdata = data
+            response => {
+                this.BuildPlayerData(response.data)
                 console.log(this.otherdata)
             }
         )
+    },
+    methods: {
+        BuildPlayerData(data) {
+            let  playerArray = data.dailyplayerstats.playerstatsentry;
+
+            playerArray.forEach(player => {
+                if (player.team.ID === "130" ) { // Atlanta Braves
+                   
+                    this.players.push({                    
+                        playerName: player.player.FirstName + ' ' + player.player.LastName,
+                        imagesrc: 'http://mlb.mlb.com/mlb/images/players/head_shot/660670.jpg',
+                        playerCardData: [
+                            { batting_average: player.stats.BattingAvg['#text'],
+                                home_runs: player.stats.Homeruns['#text'], 
+                                rbis: player.stats.RunsBattedIn['#text']}
+                        ],
+                        url: 'player/660670'
+                    })
+
+                }
+            });
+
+            this.players.sort(function(a,b) {return b.playerCardData[0].batting_average-a.playerCardData[0].batting_average})
+        }
     }
 }
 </script>

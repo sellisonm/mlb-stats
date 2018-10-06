@@ -10,15 +10,15 @@ export default {
 		var authToken = 'Basic ' + base64Token;
 
 		var seasonName = '2018-playoff';
-		var gameIdentifier = '20181005-ATL-LAD';
+		var forDate = '20181005';
 
 		var apiURL =
 			'https://api.mysportsfeeds.com/v1.1/pull/mlb/' +
 			seasonName +
-			'/game_boxscore.' +
+			'/daily_player_stats.' +
 			config.MySportsFeeds_FORMAT +
-			'?gameid=' +
-			gameIdentifier;
+			'?fordate=' +
+			forDate;
 
 		return axios
 			.get(apiURL, {
