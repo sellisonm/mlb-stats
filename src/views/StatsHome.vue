@@ -53,13 +53,12 @@ export default {
                    
                     this.players.push({                    
                         playerName: player.player.FirstName + ' ' + player.player.LastName,
-                        imagesrc: 'http://mlb.mlb.com/mlb/images/players/head_shot/660670.jpg',
+                        imagesrc: 'http://mlb.mlb.com/mlb/images/players/head_shot/' + PlayerServices.sportFeedsIdToMLBIdMap[player.player.ID] + '.jpg',
                         playerCardData: [
                             { batting_average: player.stats.BattingAvg['#text'],
                                 home_runs: player.stats.Homeruns['#text'], 
                                 rbis: player.stats.RunsBattedIn['#text']}
-                        ],
-                        url: 'player/660670'
+                        ]
                     })
 
                 }
