@@ -19,22 +19,17 @@ export default {
 		'14753':'657053', // T. Toussanit
 		'10229':'527055', // A. Vizcaino		
 	},
-	getPlayerData() {
+	getPlayerCumulativeData(seasonName) {
 		var base64Token = btoa(
 			config.MySportsFeeds_APITOKEN + ':' + config.MySportsFeeds_PASSWORD
 		);
 		var authToken = 'Basic ' + base64Token;
 
-		var seasonName = '2018-playoff';
-		var forDate = '20181005';
-
 		var apiURL =
 			'https://api.mysportsfeeds.com/v1.1/pull/mlb/' +
 			seasonName +
-			'/daily_player_stats.' +
-			config.MySportsFeeds_FORMAT +
-			'?fordate=' +
-			forDate;
+			'/cumulative_player_stats.' +
+			config.MySportsFeeds_FORMAT;
 
 		return axios
 			.get(apiURL, {

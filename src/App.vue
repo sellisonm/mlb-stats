@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/statshome">Stats Home</router-link>
+      <router-link to="/statshome">Braves Player Stats</router-link>
     </div>
     <router-view/>
   </div>

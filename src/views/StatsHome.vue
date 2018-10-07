@@ -8,7 +8,7 @@
                                 :img-alt="player.playerName"
                                 img-top               
                                 tag="article"
-                                style="max-width: 20rem"
+                                style="display:inline-block;padding: 6px;"
                                 class="mb-1">
                             <p class="card-text">
                             <b-table striped hover :items="player.playerCardData"></b-table>
@@ -36,7 +36,7 @@ export default {
         }
     },
     created() {
-        PlayerServices.getPlayerData()
+        PlayerServices.getPlayerCumulativeData('2018-playoff')
         .then(
             response => {
                 this.BuildPlayerData(response.data)
@@ -46,7 +46,7 @@ export default {
     },
     methods: {
         BuildPlayerData(data) {
-            let  playerArray = data.dailyplayerstats.playerstatsentry;
+            let  playerArray = data.cumulativeplayerstats.playerstatsentry;
 
             playerArray.forEach(player => {
                 if (player.team.ID === "130" ) { // Atlanta Braves
@@ -55,9 +55,13 @@ export default {
                         playerName: player.player.FirstName + ' ' + player.player.LastName,
                         imagesrc: 'http://mlb.mlb.com/mlb/images/players/head_shot/' + PlayerServices.sportFeedsIdToMLBIdMap[player.player.ID] + '.jpg',
                         playerCardData: [
-                            { batting_average: player.stats.BattingAvg['#text'],
+                            { 
+                                 at_bats: player.stats.AtBats['#text'],
+                                 hits: player.stats.Hits['#text'],
+                                batting_average: parseFloat(player.stats.BattingAvg['#text']).toFixed(3),
                                 home_runs: player.stats.Homeruns['#text'], 
                                 rbis: player.stats.RunsBattedIn['#text']}
+
                         ]
                     })
 
@@ -73,5 +77,8 @@ export default {
 <style scoped>
 div{
     margin: 7px;
+}
+.card-img-top {
+    width: 250px;
 }
 </style>
