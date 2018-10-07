@@ -1,5 +1,6 @@
 <template>
     <div>
+        <v-icon name="spinner" v-if='showLoading' pulse scale='3' style='margin-top: 130px;'></v-icon>
         <div class="d-flex flex-row">
                 <div v-for="player in players" v-bind:key="player.ID">                
                     <div class="p-2">
@@ -34,15 +35,18 @@ export default {
     data() {
         return {
             players: [],
-            otherdata: []
+            otherdata: [],
+            showLoading: false
         }
     },
     created() {
+        this.showLoading = true;
         PlayerServices.getPlayerCumulativeData('2018-playoff')
         .then(
             response => {
                 this.BuildPlayerData(response.data)
                 console.log(this.otherdata)
+                this.showLoading = false;
             }
         )
     },
