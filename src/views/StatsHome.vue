@@ -1,9 +1,10 @@
 <template>
     <div>
         <div class="d-flex flex-row">
-                <div v-for="player in players" v-bind:key="player.playerName">                
+                <div v-for="player in players" v-bind:key="player.ID">                
                     <div class="p-2">
-                        <b-card :title="player.playerName"
+                            
+                            <b-card :title="player.playerName"
                                 :img-src="player.imagesrc"
                                 :img-alt="player.playerName"
                                 img-top               
@@ -11,6 +12,7 @@
                                 style="display:inline-block;padding: 6px;"
                                 class="mb-1">
                             <p class="card-text">
+
                             <b-table striped hover :items="player.playerCardData"></b-table>
                             </p>
                             <b-button :href="player.url" variant="primary">Open Profile</b-button>
@@ -51,9 +53,14 @@ export default {
             playerArray.forEach(player => {
                 if (player.team.ID === "130" ) { // Atlanta Braves
                    
+                   let mlbID = PlayerServices.sportFeedsIdToMLBIdMap[player.player.ID];
+                   
                     this.players.push({                    
                         playerName: player.player.FirstName + ' ' + player.player.LastName,
-                        imagesrc: 'http://mlb.mlb.com/mlb/images/players/head_shot/' + PlayerServices.sportFeedsIdToMLBIdMap[player.player.ID] + '.jpg',
+                        imagesrc: (mlbID) 
+                            ? 'http://mlb.mlb.com/mlb/images/players/head_shot/' + PlayerServices.sportFeedsIdToMLBIdMap[player.player.ID] + '.jpg'
+                            : '../assets/blank_user.png'
+                            ,
                         playerCardData: [
                             { 
                                  at_bats: player.stats.AtBats['#text'],
