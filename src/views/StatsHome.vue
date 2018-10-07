@@ -59,7 +59,7 @@ export default {
                         playerName: player.player.FirstName + ' ' + player.player.LastName,
                         imagesrc: (mlbID) 
                             ? 'http://mlb.mlb.com/mlb/images/players/head_shot/' + PlayerServices.sportFeedsIdToMLBIdMap[player.player.ID] + '.jpg'
-                            : '../assets/blank_user.png'
+                            : "require('../assets/blank_user.png')"
                             ,
                         playerCardData: [
                             { 
