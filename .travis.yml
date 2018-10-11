@@ -6,10 +6,14 @@ node_js:
 before_install:
   - chmod +x ./deploy/frontend.sh  
   - chmod +x ./deploy/functions.sh
+  - pip install --user awscli
 
 jobs:
   include:
     - stage: deploy_frontend
       script: ./deploy/frontend.sh
+      after_success:
+        - aws s3 sync ~/dist s3://mlb-stats-sellison/mlbstats
     - stage: deploy_functions
       script: ./deploy/functions.sh
+            
