@@ -13,7 +13,7 @@ jobs:
     - stage: deploy_frontend
       script: ./deploy/frontend.sh
       after_success:
-        - aws s3 sync ~/dist s3://mlb-stats-sellison/mlbstats
+        - aws s3 sync /dist s3://mlb-stats-sellison/mlbstats
     - stage: deploy_functions
       script: ./deploy/functions.sh
             
