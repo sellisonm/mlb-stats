@@ -6,7 +6,7 @@
                     <div class="p-2">
                             
                             <b-card :title="player.playerName"
-                                :img-src="player.imagesrc"
+                                :img-src="player.imagesrc" 
                                 :img-alt="player.playerName"
                                 img-top               
                                 tag="article"
@@ -36,7 +36,8 @@ export default {
         return {
             players: [],
             otherdata: [],
-            showLoading: false
+            showLoading: false,
+            defaultImage: require('../assets/blank_user.png')
         }
     },
     created() {
@@ -63,7 +64,7 @@ export default {
                         playerName: player.player.FirstName + ' ' + player.player.LastName,
                         imagesrc: (mlbID) 
                             ? 'http://mlb.mlb.com/mlb/images/players/head_shot/' + PlayerServices.sportFeedsIdToMLBIdMap[player.player.ID] + '.jpg'
-                            : "require('../assets/blank_user.png')"
+                            : this.defaultImage
                             ,
                         playerCardData: [
                             { 
