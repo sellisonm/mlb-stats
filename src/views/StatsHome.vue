@@ -63,7 +63,7 @@ export default {
                     this.players.push({                    
                         playerName: player.player.FirstName + ' ' + player.player.LastName,
                         imagesrc: (mlbID) 
-                            ? 'http://mlb.mlb.com/mlb/images/players/head_shot/' + PlayerServices.sportFeedsIdToMLBIdMap[player.player.ID] + '.jpg'
+                            ? 'https://mlb.mlb.com/mlb/images/players/head_shot/' + PlayerServices.sportFeedsIdToMLBIdMap[player.player.ID] + '.jpg'
                             : this.defaultImage
                             ,
                         playerCardData: [
